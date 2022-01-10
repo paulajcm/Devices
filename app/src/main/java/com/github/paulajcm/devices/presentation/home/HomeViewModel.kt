@@ -1,13 +1,13 @@
-package com.github.paulajcm.devices.ui.settings
+package com.github.paulajcm.devices.presentation.home
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class SettingsViewModel : ViewModel() {
+class HomeViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "Coming soon - Settings"
+        value = "This is home Fragment"
     }
     val text: LiveData<String> = _text
 }

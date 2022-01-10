@@ -1,4 +1,4 @@
-package com.github.paulajcm.devices.ui.user_devices
+package com.github.paulajcm.devices.presentation.user_devices
 
 import android.os.Bundle
 import android.view.LayoutInflater
