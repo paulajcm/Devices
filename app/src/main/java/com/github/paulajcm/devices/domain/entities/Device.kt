@@ -1,9 +1,10 @@
 package com.github.paulajcm.devices.domain.entities
 
+
 data class Device(
     val id: String,
     val type: String,
-    val price: Float,
+    val price: Double,
     val currency: String,
     val isFavorite: Boolean,
     val imageUrl: String,

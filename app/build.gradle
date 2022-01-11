@@ -30,7 +30,7 @@ android {
         }
         mock {
             dimension "default"
-            buildConfigField "String", "API_URL", "\"10.0.2.2:8282'\""
+            buildConfigField "String", "API_URL", "\"https://10.0.2.2'\""
         }
     }
     compileOptions {
@@ -58,10 +58,22 @@ dependencies {
 
     // Koin
     implementation "io.insert-koin:koin-android:3.1.5"
+    testImplementation "io.insert-koin:koin-test:3.1.5"
+    testImplementation "io.insert-koin:koin-test-junit4:3.1.5"
 
     // Retrofit
     implementation 'com.squareup.retrofit2:converter-gson:2.8.1'
     implementation 'com.squareup.retrofit2:retrofit:2.8.1'
+    implementation "com.google.code.gson:gson:2.8.8"
+
+    // MockWebServer
+    testImplementation "com.squareup.okhttp3:mockwebserver:4.9.2"
+
+    // Mockito
+    testImplementation "org.mockito:mockito-core:3.12.4"
+    testImplementation "org.mockito:mockito-inline:3.12.4"
+    testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0"
+    testImplementation "org.mockito:mockito-android:3.12.4"
 
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
