@@ -1,11 +1,10 @@
 package com.github.paulajcm.devices.datasource.repository
 
 import com.github.paulajcm.devices.datasource.api.DevicesApi
-import com.github.paulajcm.devices.domain.entities.device1
-import com.github.paulajcm.devices.domain.entities.device2
 import com.github.paulajcm.devices.domain.entities.mockDevicesList
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
+import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -25,9 +24,8 @@ class RemoteDevicesRepositoryTest{
         repository = RemoteDevicesRepository(api)
     }
 
-
     @Test
-    fun `when calling getDevices, then should access the api`() {
+    fun `when calling getDevices, then should access the api`(): Unit = runBlocking {
 
         repository.getDevices()
 
@@ -35,13 +33,13 @@ class RemoteDevicesRepositoryTest{
     }
 
     @Test
-    fun `given a response json, when calling getDevices, then should retrieve parsed list of devices`() {
+    fun `given a response json, when calling getDevices, then should retrieve list of devices`() = runBlocking {
 
         whenever(api.getDevices()).thenReturn(mockDevicesList)
 
-        val result = repository.getDevices()
-
-        assert(result == mockDevicesList)
+        when(val result = repository.getDevices()) {
+            is Result.Success -> assert(result.value == mockDevicesList)
+        }
     }
 
 }
