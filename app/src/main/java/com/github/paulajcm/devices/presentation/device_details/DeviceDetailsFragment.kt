@@ -4,22 +4,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.navArgs
 import com.github.paulajcm.devices.databinding.FragmentDeviceDetailsBinding
-import com.github.paulajcm.devices.databinding.FragmentSettingsBinding
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DeviceDetailsFragment : Fragment() {
 
-    private val deviceDetailsViewModel: DeviceDetailsViewModel by viewModel()
     private var _binding: FragmentDeviceDetailsBinding? = null
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
+
+    private val args: DeviceDetailsFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -27,10 +22,15 @@ class DeviceDetailsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentDeviceDetailsBinding.inflate(inflater, container, false)
-        val root: View = binding.root
+        return binding.root
+    }
 
-
-        return root
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        val device = args.device
+        binding.textViewDeviceDetailTitle.text = device.title
+        binding.textViewDeviceType.text = device.type
+        binding.textViewDeviceDetailPrice.text = "${device.title} ${device.price}"
+        binding.textViewDeviceDetailDescription.text = device.description
     }
 
     override fun onDestroyView() {

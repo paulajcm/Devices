@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.github.paulajcm.devices.databinding.FragmentHomeBinding
 import com.github.paulajcm.devices.domain.entities.Device
@@ -98,7 +99,8 @@ class HomeFragment : Fragment() {
     }
 
     private fun onDeviceClicked(device: Device) {
-        // TODO navigate to device details
+        val direction = HomeFragmentDirections.actionNavigationHomeToNavigationDeviceDetails(device)
+        findNavController().navigate(direction)
     }
 
     override fun onDestroyView() {

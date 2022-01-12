@@ -31,5 +31,11 @@
         android:id="@+id/navigation_device_details"
         android:name="com.github.paulajcm.devices.presentation.device_details.DeviceDetailsFragment"
         android:label="@string/title_device_details"
-        tools:layout="@layout/fragment_device_details" />
+        tools:layout="@layout/fragment_device_details">
+
+        <argument
+            android:name="device"
+            app:argType="com.github.paulajcm.devices.domain.entities.Device"/>
+    </fragment>
+
 </navigation>
