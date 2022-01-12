@@ -9,6 +9,6 @@ interface DevicesApi {
     @GET("v1/devices")
     suspend fun getDevices(): List<Device>
 
-    @GET("v1/devices/query?")
+    @GET("v1/devices/query")
     suspend fun queryDevices(@Query("name") query: String): List<Device>
 }

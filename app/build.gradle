@@ -32,7 +32,7 @@ android {
         }
         mock {
             dimension "default"
-            buildConfigField "String", "API_URL", "\"https://10.0.2.2'\""
+            buildConfigField "String", "API_URL", "\"http://10.0.2.2:8282/\""
         }
     }
     compileOptions {
@@ -69,15 +69,13 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.8.1'
     implementation "com.google.code.gson:gson:2.8.8"
 
-    // MockWebServer
-    testImplementation "com.squareup.okhttp3:mockwebserver:4.9.2"
-
     // Mockito
     testImplementation "org.mockito:mockito-core:3.12.4"
     testImplementation "org.mockito:mockito-inline:3.12.4"
     testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0"
     testImplementation "org.mockito:mockito-android:3.12.4"
 
+    // JUnit
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.2")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.2")
 

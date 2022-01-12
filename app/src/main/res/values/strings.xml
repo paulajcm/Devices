@@ -6,4 +6,7 @@
     <string name="title_device_details">Device Details</string>
     <string name="devices">Devices</string>
     <string name="search">Search</string>
+    <string name="empty_message">No devices found</string>
+    <string name="error_message">Couldn\'t retrieve devices</string>
+    <string name="loading_message">Loading devices</string>
 </resources>

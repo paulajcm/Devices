@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import com.github.paulajcm.devices.R
 import com.github.paulajcm.devices.databinding.FragmentHomeBinding
 import com.github.paulajcm.devices.domain.entities.Device
 import com.github.paulajcm.devices.presentation.UIState
@@ -20,7 +21,7 @@ class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var adapter: DeviceListAdapter
+    private lateinit var devicesAdapter: DeviceListAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -65,37 +66,45 @@ class HomeFragment : Fragment() {
             }
 
             override fun onTextChanged(query: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                homeViewModel.retrieveDevices(query as String? ?: "")
+                homeViewModel.retrieveDevices(binding.editTextSearch.text.toString())
             }
         })
     }
 
     private fun setupDeviceList() {
-        adapter = DeviceListAdapter { device ->
+        devicesAdapter = DeviceListAdapter { device ->
             onDeviceClicked(device)
         }
-        with(binding.recyclerViewDevices){
+        with(binding.includeDeviceList.recyclerView){
             layoutManager = GridLayoutManager(requireContext(), 2)
-            adapter = adapter
+            adapter = devicesAdapter
         }
     }
 
     private fun showEmpty() {
-        // TODO Show empty state
+        binding.includeDeviceList.textViewEmpty.text = getString(R.string.empty_message)
+        binding.includeDeviceList.groupEmptyViews.visibility = View.VISIBLE
+        binding.includeDeviceList.recyclerView.visibility = View.GONE
     }
 
     private fun showError() {
-        // TODO Show error state
+        binding.includeDeviceList.textViewEmpty.text = getString(R.string.error_message)
+        binding.includeDeviceList.groupEmptyViews.visibility = View.VISIBLE
+        binding.includeDeviceList.recyclerView.visibility = View.GONE
     }
 
     private fun showProgress() {
-        // TODO Show progress state
+        binding.includeDeviceList.textViewEmpty.text = getString(R.string.loading_message)
+        binding.includeDeviceList.groupEmptyViews.visibility = View.VISIBLE
+        binding.includeDeviceList.recyclerView.visibility = View.GONE
     }
 
     private fun showDeviceList(devices: List<Device>?) {
         devices?.let {
-            adapter.submitList(it)
+            devicesAdapter.submitList(it)
         }
+        binding.includeDeviceList.groupEmptyViews.visibility = View.GONE
+        binding.includeDeviceList.recyclerView.visibility = View.VISIBLE
     }
 
     private fun onDeviceClicked(device: Device) {

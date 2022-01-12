@@ -1,0 +1,15 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v1/devices"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Access-Control-Allow-Origin" : "*",
+      "Content-Type": "application/json"
+    },
+    "bodyFileName" : "devices.json",
+    "transformers": ["response-template"]
+  }
+}

@@ -1,0 +1,6 @@
+task wiremockServer(type: JavaExec) {
+    group = "Mock"
+    description = "Wiremock Server"
+    classpath = files("wiremock/wiremock.jar")
+    args("--port=8282", "--root-dir=wiremock", "--global-response-templating")
+}

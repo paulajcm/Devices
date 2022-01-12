@@ -29,7 +29,7 @@ class DeviceDetailsFragment : Fragment() {
         val device = args.device
         binding.textViewDeviceDetailTitle.text = device.title
         binding.textViewDeviceType.text = device.type
-        binding.textViewDeviceDetailPrice.text = "${device.title} ${device.price}"
+        binding.textViewDeviceDetailPrice.text = "${device.currency} ${device.price}"
         binding.textViewDeviceDetailDescription.text = device.description
     }
 

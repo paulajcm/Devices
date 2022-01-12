@@ -1,0 +1,12 @@
+[
+  {
+    "id": "1234",
+    "type": "Sensor",
+    "price": 20,
+    "currency": "USD",
+    "isFavorite": false,
+    "imageUrl": "",
+    "title": "Test Sensor",
+    "description": ""
+  }
+]
