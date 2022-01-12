@@ -27,7 +27,7 @@ class RemoteDevicesRepositoryTest{
     @Test
     fun `when calling getDevices, then should access the api`(): Unit = runBlocking {
 
-        repository.getDevices()
+        repository.getAllDevices()
 
         verify(api).getDevices()
     }
@@ -37,7 +37,7 @@ class RemoteDevicesRepositoryTest{
 
         whenever(api.getDevices()).thenReturn(mockDevicesList)
 
-        when(val result = repository.getDevices()) {
+        when(val result = repository.getAllDevices()) {
             is Result.Success -> assert(result.value == mockDevicesList)
         }
     }

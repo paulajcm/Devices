@@ -6,9 +6,7 @@ import com.github.paulajcm.devices.datasource.repository.Result
 import com.github.paulajcm.devices.domain.entities.mockDevicesList
 import com.github.paulajcm.devices.domain.usecases.GetDevicesUseCase
 import com.github.paulajcm.devices.presentation.UIState
-import com.nhaarman.mockitokotlin2.inOrder
-import com.nhaarman.mockitokotlin2.verify
-import com.nhaarman.mockitokotlin2.whenever
+import com.nhaarman.mockitokotlin2.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
@@ -50,7 +48,7 @@ internal class HomeViewModelTest {
 
     @Test
     fun `given use case has a successful result, when retrieving devices, then should send success state`(): Unit = runBlocking {
-        whenever(useCase.invoke()).thenReturn(Result.Success(mockDevicesList))
+        whenever(useCase.invoke(any())).thenReturn(Result.Success(mockDevicesList))
 
         viewModel.devicesState.observeForever(devicesLiveDataObserver)
         viewModel.retrieveDevices()
@@ -71,7 +69,7 @@ internal class HomeViewModelTest {
 
     @Test
     fun `given use case has an failure result, when retrieving devices, then should send error state`(): Unit = runBlocking {
-        whenever(useCase.invoke()).thenReturn(Result.Failure(Exception()))
+        whenever(useCase.invoke(any())).thenReturn(Result.Failure(Exception()))
 
         viewModel.devicesState.observeForever(devicesLiveDataObserver)
         viewModel.retrieveDevices()
@@ -79,4 +77,24 @@ internal class HomeViewModelTest {
         verify(devicesLiveDataObserver).onChanged(UIState.Error)
     }
 
+    @Test
+    fun `when retrieving devices with a valid query, then should invoke the use case`(): Unit = runBlocking {
+        viewModel.retrieveDevices("Sensor")
+
+        verify(useCase).invoke("Sensor")
+    }
+
+    @Test
+    fun `when retrieving devices with an empty query, then should invoke the use case`(): Unit = runBlocking {
+        viewModel.retrieveDevices()
+
+        verify(useCase).invoke("")
+    }
+
+    @Test
+    fun `when retrieving devices with a short query, then should NOT invoke the use case`(): Unit = runBlocking {
+        viewModel.retrieveDevices("Sen")
+
+        verify(useCase, never()).invoke(any())
+    }
 }
