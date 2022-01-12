@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_constraintHorizontal_bias="0.25">
+
+    <ImageView
+        android:id="@+id/imageViewDeviceDetail"
+        android:layout_width="wrap_content"
+        android:layout_height="240dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+    <ImageView
+        android:id="@+id/imageViewFavorite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewDeviceDetail"
+        app:srcCompat="@drawable/ic_baseline_star_24dp" />
+
+    <TextView
+        android:id="@+id/textViewDeviceDetailTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        tools:text="Sensor"
+        android:textAppearance="@style/TextAppearance.Material3.HeadlineSmall"
+        app:layout_constraintEnd_toStartOf="@+id/imageViewFavorite"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewDeviceDetail" />
+
+    <TextView
+        android:id="@+id/textViewDeviceDetailDescription"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="24dp"
+        android:ellipsize="end"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewDeviceType"
+        tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lacinia magna vel nisl volutpat mattis. Ut ut velit sit amet sem efficitur malesuada at quis quam. Praesent in dui libero. Fusce consectetur laoreet cursus. In hac habitasse platea dictumst. Mauris quis nisi justo. Proin eget gravida velit. Quisque iaculis cursus pellentesque. Sed ultricies nisl ac aliquet cursus. Nulla eu nunc dui. Donec congue tincidunt massa sit amet lobortis. Proin interdum urna condimentum nisl feugiat tempus." />
+
+    <TextView
+        android:id="@+id/textViewDeviceDetailPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        tools:text="USD 20.00"
+        android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewDeviceDetailTitle" />
+
+    <TextView
+        android:id="@+id/textViewDeviceType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        tools:text="Sensor"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewDeviceDetailPrice" />
+</androidx.constraintlayout.widget.ConstraintLayout>
